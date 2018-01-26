@@ -1,7 +1,25 @@
 body {
-    color: red;
+    color: rgb(85, 84, 84);
 }
 
-.crystalImage {
-    width: 200px;
+.button {
+    float: left;
+    border: none;
+    background-color: none;
+}
+
+#blueCrystal {
+    width: 100px;
+}
+
+#redCrystal {
+    width: 100px;
+}
+
+#greenCrystal {
+    width: 100px;
+}
+
+#purpleCrystal {
+    width: 100px;
 }

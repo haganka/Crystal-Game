@@ -1,5 +1,6 @@
 body {
-    color: rgb(85, 84, 84);
+    color: rgb(241, 241, 241);
+    background-color: black;
 }
 
 .button {
@@ -22,4 +23,8 @@ body {
 
 #purpleCrystal {
     width: 100px;
+}
+
+.reset-button {
+    color: rgb(61, 61, 61);
 }

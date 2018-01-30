@@ -12,11 +12,12 @@ $(document).ready(function () {
     var losses = 0;
 
 
-    var startGame2 = function(){
-        totalVal = 0;
-        $(".total-score").text("Your total: " + totalVal);
+    var startGame = function(){
+        // totalVal = 0;
+        // $(".total-num").text(totalVal);
         randNum = Math.floor(Math.random() * 102) + 19;
-        $(".randomBox").text("Random Number: " + randNum);
+        console.log("random", randNum);
+        $("#random-number").text(randNum);
 
         var crystalVal = [];
         for(var i = 0; i < 4; i++){
@@ -36,78 +37,77 @@ $(document).ready(function () {
             $("#purple").attr("data-value", purpVal);
             console.log("purp", purpVal);
 
-    }
-    startGame2();
+            var winner = function(){
+                wins++;
+                $("#wins").append(wins);
+        
+            }
+        
+            var loser = function(){
+                losses++;
+                $("#losses").append(losses);
+        
+            }
+        
+        
+            $('#blue').on ('click', function(){
+                totalVal = parseInt(totalVal + blueVal);
+                console.log("New totalb= " + totalVal);
+                $('#total-num').text(totalVal); 
+        
+                    if (totalVal === randNum){
+                      winner();
+                    }
+                    else if (totalVal > randNum){
+                      loser();
+                    }   
+            });
 
-    console.log("BLUE", blueVal);
+            $("#green").on("click", function() {
+                totalVal = totalVal + greenVal;
+                console.log("New totalg= " + totalVal);
+                $('#total-num').text(totalVal); 
+        
+                    if (totalVal === randNum){
+                        winner();
+                    }
+                    else if (totalVal > randNum){
+                        loser();
+                    } 
+            });
 
+            $("#red").on("click", function() {
+                totalVal = totalVal + redVal
+                console.log("New totalr= " + totalVal);
+                $('#total-num').text(totalVal); 
+        
+                    if (totalVal === randNum){
+                        winner();
+                    }
+                    else if (totalVal > randNum){
+                        loser();
+                    } 
+            });
 
-    $("#blue").on("click", function() {
-        parseInt(totalVal = totalVal + blueVal);
-        console.log("totalb", totalVal)
-        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+            $("#purple").on("click", function() {
+                totalVal = totalVal + purpVal
+                console.log("New totalp= " + totalVal);
+                $('#total-num').text(totalVal); 
+        
+                    if (totalVal === randNum){
+                        winner();
+                    }
+                    else if (totalVal > randNum){
+                        loser();
+                    } 
 
-    });
-    $("#green").on("click", function() {
-        parseInt(totalVal = totalVal + greenVal);
-        console.log("totalg", totalVal)
-        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+            });
 
-    });
-    $("#red").on("click", function() {
-        parseInt(totalVal = totalVal + redVal);
-        console.log("totalr", totalVal)
-        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+            $(".total-num").text(totalVal);
 
-    });
-    $("#purple").on("click", function() {
-        parseInt(totalVal = totalVal + purpVal);
-        console.log("totalp", totalVal)
-        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
-
-    });
-
+        };
     
-    var compareVals = function(){
-
-        if (totalVal === randNum){
-            wins++;
-            $(".stats").append(wins);
-            // randNum = Math.floor(Math.random() * 102) + 19;
-            $(".randomBox").text("Random Number: " + randNum);
-
-        }else if (totalVal < randNum){
-            totalVal += parseInt(this.value);
-            losses++;
-            $(".stats").append("<h3>"+ "Losses: " + losses + "</h3>");
-            // randNum = Math.floor(Math.random() * 102) + 19;
-            $(".randomBox").text("Random Number: " + randNum);
-        }
-    }
-
-    compareVals();
-
-    });
+    startGame();
 
 
-    //need to test once counter is working
-        // if (totalVal === randNum){
-        //     wins++;
-        //     $(".stats").append(wins);
-        //     // randNum = Math.floor(Math.random() * 102) + 19;
-        //     $(".randomBox").text("Random Number: " + randNum);
-
-
-
-        // }else if (counter > randNum){
-        //     losses++;
-        //     $(".stats").append("<h3>"+ "Losses: " + losses + "</h3>");
-        //     // randNum = Math.floor(Math.random() * 102) + 19;
-        //     $(".randomBox").text("Random Number: " + randNum);
-        // }
-
-    // $(".start-button").on("click", startGame)
-    $(".stats").append("<h3>"+ "Losses: " + losses + "</h3>");
-    $(".stats").append("<h3>"+ "Wins: " + wins + "</h3>");
-
-
+});

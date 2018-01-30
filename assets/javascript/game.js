@@ -12,120 +12,102 @@ $(document).ready(function () {
     var losses = 0;
 
 
-    var startGame = function(){
-    
-        var assignNum1 = function(){
-            var greenVal = Math.floor(Math.random() * 11) + 1;
-            console.log("newgreen", greenVal);
-            $("#green").attr("data-value", greenVal);
-        
-            return greenVal;
+    var startGame2 = function(){
+        totalVal = 0;
+        $(".total-score").text("Your total: " + totalVal);
+        randNum = Math.floor(Math.random() * 102) + 19;
+        $(".randomBox").text("Random Number: " + randNum);
 
+        var crystalVal = [];
+        for(var i = 0; i < 4; i++){
+            crystalVal.push(Math.floor(Math.random() * 11) + 1);
+            console.log(crystalVal);
         }
-        assignNum1();
-
-        var assignNum2 = function(){
-            var blueVal = Math.floor(Math.random() * 11) + 1;
-            console.log("newblue", blueVal);
+            var blueVal = crystalVal[0];
             $("#blue").attr("data-value", blueVal);
-
-            return blueVal;
-
-        }
-        assignNum2();
-
-        var assignNum3 = function(){
-            var redVal = Math.floor(Math.random() * 11) + 1;
-            console.log("newpurp", redVal);
+            console.log("blue", blueVal);
+            var greenVal = crystalVal[1];
+            $("#green").attr("data-value", greenVal);
+            console.log("green", greenVal);
+            var redVal = crystalVal[2];
             $("#red").attr("data-value", redVal);
-
-            return redVal;
-
-        }
-        assignNum3();
-
-        var assignNum4 = function(){
-            var purpVal = Math.floor(Math.random() * 11) + 1;
-            console.log("newpurp", purpVal);
+            console.log("red", redVal);
+            var purpVal = crystalVal[3];
             $("#purple").attr("data-value", purpVal);
+            console.log("purp", purpVal);
 
-            return purpVal;
+    }
+    startGame2();
 
-        }
-        assignNum4();
+    console.log("BLUE", blueVal);
 
 
-        $(".button").on("click", function() {
-            totalVal = totalVal += blueVal + purpVal + redVal + greenVal;
-            console.log("totalo", totalVal)
-            return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+    $("#blue").on("click", function() {
+        parseInt(totalVal = totalVal + blueVal);
+        console.log("totalb", totalVal)
+        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+
+    });
+    $("#green").on("click", function() {
+        parseInt(totalVal = totalVal + greenVal);
+        console.log("totalg", totalVal)
+        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+
+    });
+    $("#red").on("click", function() {
+        parseInt(totalVal = totalVal + redVal);
+        console.log("totalr", totalVal)
+        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+
+    });
+    $("#purple").on("click", function() {
+        parseInt(totalVal = totalVal + purpVal);
+        console.log("totalp", totalVal)
+        return totalVal; //total val is bringing in the global variables declared at beginning, not those delcared above
+
+    });
+
     
-        });
+    var compareVals = function(){
 
-    }
-
-
-    startGame();
-
-
-//not working
-    var crystalVal = function(){
-        console.log("this works");
-        var crystalAmount = Math.floor(Math.random() * 11) + 1;
-        // if (otherCrystalChosen)
-        return crystalAmount;
-        $(".button").on("click", crystalVal);
-        console.log("crystal val", crystalVal);
-  
-    }
-
-    // var crystalNumGen = function() {
-    //     $("#blueCrystal").on("click", randCrystalNum);
-    //     var randCrystalNum = Math.floor((Math.random() * (12 - 1)) + 1);
-    //     console.log(crystalNum);
-    //     $("#blueCrystal").attr("data-value", randCrystalNum);
-  
-    // };
-
-    // var crystalNum = crystalNumGen();
-    // console.log(crystalNum);
-
-// add conditionals - if green button has been clicked (check data-value and if = 0 don't add, if it's over 0 add)
-// also need to freeze random
-
-// //this is not working
-//     var getTotal = function (){
-//         totalVal = blueVal + greenVal;
-//         console.log("total", totalVal);
-//         totalVal = ($(this).attr("data-value"));
-//         totalVal = parseInt(totalVal);
-//         counter += totalVal;
-//         return totalVal;
-
-//     }
-//     getTotal();
-//     console.log("total", getTotal);
-
-
-
-    //need to test once counter is working
-        if (counter === randNum){
+        if (totalVal === randNum){
             wins++;
             $(".stats").append(wins);
             // randNum = Math.floor(Math.random() * 102) + 19;
             $(".randomBox").text("Random Number: " + randNum);
 
-
-
-        }else if (counter > randNum){
+        }else if (totalVal < randNum){
+            totalVal += parseInt(this.value);
             losses++;
             $(".stats").append("<h3>"+ "Losses: " + losses + "</h3>");
             // randNum = Math.floor(Math.random() * 102) + 19;
             $(".randomBox").text("Random Number: " + randNum);
         }
+    }
+
+    compareVals();
+
+    });
+
+
+    //need to test once counter is working
+        // if (totalVal === randNum){
+        //     wins++;
+        //     $(".stats").append(wins);
+        //     // randNum = Math.floor(Math.random() * 102) + 19;
+        //     $(".randomBox").text("Random Number: " + randNum);
+
+
+
+        // }else if (counter > randNum){
+        //     losses++;
+        //     $(".stats").append("<h3>"+ "Losses: " + losses + "</h3>");
+        //     // randNum = Math.floor(Math.random() * 102) + 19;
+        //     $(".randomBox").text("Random Number: " + randNum);
+        // }
 
     // $(".start-button").on("click", startGame)
     $(".stats").append("<h3>"+ "Losses: " + losses + "</h3>");
     $(".stats").append("<h3>"+ "Wins: " + wins + "</h3>");
 
-});
+

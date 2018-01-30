@@ -10,19 +10,24 @@ $(document).ready(function () {
     var counter = 0;
     var wins = 0;
     var losses = 0;
+    var loseResult = "";
+    var winResult = "";
 
 
     var startGame = function(){
-        // totalVal = 0;
-        // $(".total-num").text(totalVal);
+        totalVal = 0;
+        // $("#wins").text("");
+        // $("#losses").text("");
+        // $(loseResult).remove();
+        // $(winResult).remove();
+        $('#total-num').text(totalVal);
         randNum = Math.floor(Math.random() * 102) + 19;
-        console.log("random", randNum);
         $("#random-number").text(randNum);
 
         var crystalVal = [];
         for(var i = 0; i < 4; i++){
             crystalVal.push(Math.floor(Math.random() * 11) + 1);
-            console.log(crystalVal);
+
         }
             var blueVal = crystalVal[0];
             $("#blue").attr("data-value", blueVal);
@@ -37,30 +42,12 @@ $(document).ready(function () {
             $("#purple").attr("data-value", purpVal);
             console.log("purp", purpVal);
 
-            var winner = function(){
-                wins++;
-                $("#wins").append(wins);
-        
-            }
-        
-            var loser = function(){
-                losses++;
-                $("#losses").append(losses);
-        
-            }
-        
-        
+
             $('#blue').on ('click', function(){
-                totalVal = parseInt(totalVal + blueVal);
+                totalVal = totalVal + blueVal;
                 console.log("New totalb= " + totalVal);
                 $('#total-num').text(totalVal); 
         
-                    if (totalVal === randNum){
-                      winner();
-                    }
-                    else if (totalVal > randNum){
-                      loser();
-                    }   
             });
 
             $("#green").on("click", function() {
@@ -68,44 +55,50 @@ $(document).ready(function () {
                 console.log("New totalg= " + totalVal);
                 $('#total-num').text(totalVal); 
         
-                    if (totalVal === randNum){
-                        winner();
-                    }
-                    else if (totalVal > randNum){
-                        loser();
-                    } 
+
             });
 
             $("#red").on("click", function() {
                 totalVal = totalVal + redVal
                 console.log("New totalr= " + totalVal);
                 $('#total-num').text(totalVal); 
-        
-                    if (totalVal === randNum){
-                        winner();
-                    }
-                    else if (totalVal > randNum){
-                        loser();
-                    } 
+
             });
 
             $("#purple").on("click", function() {
-                totalVal = totalVal + purpVal
+                totalVal = totalVal + purpVal;
                 console.log("New totalp= " + totalVal);
                 $('#total-num').text(totalVal); 
-        
-                    if (totalVal === randNum){
-                        winner();
-                    }
-                    else if (totalVal > randNum){
-                        loser();
-                    } 
 
             });
 
-            $(".total-num").text(totalVal);
+            $(".button").on("click", function(){
+                if (totalVal === randNum){
+                    winner();
+                }
+                else if (totalVal > randNum){
+                    loser();
+                } 
+            });
 
         };
+
+        var winner = function(){
+            wins++;
+            console.log(wins);
+            $("#wins").text(wins);
+            // var winResult = ("<h3>" + "You won!" + "</h3>");
+            // $(".stats").prepend(winResult);
+            startGame();
+        }
+    
+        var loser = function(){
+            losses++;
+            $("#losses").append(losses);
+            // var loseResult = ("<h3>" + "You lost. Try again!" + "</h3>");
+            // $(".stats").prepend(loseResult);
+            startGame();
+        }
     
     startGame();
 

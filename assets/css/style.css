@@ -21,6 +21,11 @@ p {
     margin-bottom: 70px;
 }
 
+button:active {
+    outline: none;
+    border: none;
+    }
+
 
 #blueCrystal {
     width: 70%;

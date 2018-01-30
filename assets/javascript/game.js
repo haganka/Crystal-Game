@@ -16,11 +16,13 @@ $(document).ready(function () {
 
     var startGame = function(){
         totalVal = 0;
-        // $("#wins").text("");
-        // $("#losses").text("");
-        // $(loseResult).remove();
-        // $(winResult).remove();
         $('#total-num').text(totalVal);
+        
+        blueVal = 0;
+        greenVal = 0;
+        purpVal = 0;
+        redVal = 0;
+        
         randNum = Math.floor(Math.random() * 102) + 19;
         $("#random-number").text(randNum);
 
@@ -41,7 +43,7 @@ $(document).ready(function () {
             var purpVal = crystalVal[3];
             $("#purple").attr("data-value", purpVal);
             console.log("purp", purpVal);
-
+        
 
             $('#blue').on ('click', function(){
                 totalVal = totalVal + blueVal;
@@ -94,7 +96,7 @@ $(document).ready(function () {
     
         var loser = function(){
             losses++;
-            $("#losses").append(losses);
+            $("#losses").text(losses);
             // var loseResult = ("<h3>" + "You lost. Try again!" + "</h3>");
             // $(".stats").prepend(loseResult);
             startGame();

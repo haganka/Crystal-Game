@@ -1,30 +1,39 @@
 body {
     color: rgb(241, 241, 241);
-    background-color: black;
+    background-image: url("../images/black_thread.png");
+    font-family: 'Rye', cursive;
+}
+
+h1 {
+    text-align: center;
+    font-size: 100px;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
 }
 
 .button {
     float: left;
     border: none;
-    background-color: none;
+    background: transparent;
+    margin-top: 40px;
+    margin-bottom: 70px;
 }
 
+
 #blueCrystal {
-    width: 100px;
+    width: 70%;
 }
 
 #redCrystal {
-    width: 100px;
+    width: 70%;
 }
 
 #greenCrystal {
-    width: 100px;
+    width: 70%;
 }
 
 #purpleCrystal {
-    width: 100px;
-}
-
-.reset-button {
-    color: rgb(61, 61, 61);
+    width: 70%;
 }

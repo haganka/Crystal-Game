@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Rye" rel="stylesheet">
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/game.js"></script>
 
@@ -17,7 +18,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="heading">
+            <div class="heading col-md-12">
                 <h1>CRYSTAL COLLECTOR</h1>
             </div>
         </div>
@@ -35,47 +36,47 @@
             </div>
         </div>
         <div class="row">
-            <div class="randomBox">
+            <div class="randomBox gameNums col-md-3">
                 <h2>Random Number:
-                    <span id="random-number"></span>
+                    <p id="random-number"></p>
                 </h2>
             </div>
-        </div>
-        <div class="row">
-            <div class="total-score">
+            <div class="total-score gameNums col-md-3">
                 <h2>Your Total Score:
-                    <span id="total-num"></span>
+                    <p id="total-num"></p>
+                </h2>
+            </div>
+            <div class="winsBox gameNums col-md-3">
+                <h2>Wins:
+                    <p id="wins">0</p>
+                </h2>
+            </div>
+            <div class="lossesBox gameNums col-md-3">
+                <h2>Losses:
+                    <p id="losses">0</p>
                 </h2>
             </div>
         </div>
-        <div class="row">
-            <div class="stats">
-                <h4>Wins:
-                    <span id="wins"></span>
-                </h4>
-                <h4>Losses:
-                    <span id="losses"></span>
-                </h4>
-            </div>
-        </div>
+
         <div class="row">
             <div class="crystals">
-                <div class="col-md-3">
+                <audio id="crystalSound"><source src="assets/images/clink2.wav"></audio>
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <button class="button" id="blue" data-value="">
                         <img id="blueCrystal" src="assets/images/blue3.png" alt="blue gem" />
                     </button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <button class="button" id="green" data-value="">
                         <img id="greenCrystal" src="assets/images/green2.png" alt="green gem" />
                     </button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <button class="button" id="red" data-value="">
                         <img id="redCrystal" src="assets/images/red2.png" alt="red gem">
                     </button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <button class="button" id="purple" data-value="">
                         <img id="purpleCrystal" src="assets/images/purple2.png" alt="purple gem">
                     </button>

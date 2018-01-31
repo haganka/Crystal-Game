@@ -1,27 +1,23 @@
 $(document).ready(function () {
-    
-    var greenVal = 0;
-    var redVal = 0;
-    var blueVal = 0;
-    var purpVal = 0;
+
     var randNum = 0;
     var totalVal = 0;
-    var matchRandom = false;
-    var counter = 0;
     var wins = 0;
     var losses = 0;
-    var loseResult = "";
-    var winResult = "";
 
+    var resetCrystals = function(){
+        totalVal = 0;
+        randNum = 0;
+    }
 
     var startGame = function(){
         totalVal = 0;
+        // var blueVal = 0;
+        // var greenVal = 0;
+        // var purpVal = 0;
+        // var redVal = 0;
         $('#total-num').text(totalVal);
-        
-        blueVal = 0;
-        greenVal = 0;
-        purpVal = 0;
-        redVal = 0;
+    
         
         randNum = Math.floor(Math.random() * 102) + 19;
         $("#random-number").text(randNum);
@@ -32,74 +28,74 @@ $(document).ready(function () {
 
         }
             var blueVal = crystalVal[0];
-            $("#blue").attr("data-value", blueVal);
+            $("#blue").data("value", blueVal);
             console.log("blue", blueVal);
             var greenVal = crystalVal[1];
-            $("#green").attr("data-value", greenVal);
+            $("#green").data("value", greenVal);
             console.log("green", greenVal);
             var redVal = crystalVal[2];
-            $("#red").attr("data-value", redVal);
+            $("#red").data("value", redVal);
             console.log("red", redVal);
             var purpVal = crystalVal[3];
-            $("#purple").attr("data-value", purpVal);
+            $("#purple").data("value", purpVal);
             console.log("purp", purpVal);
         
 
-            $('#blue').on ('click', function(){
-                totalVal = totalVal + blueVal;
-                console.log("New totalb= " + totalVal);
-                $('#total-num').text(totalVal); 
-        
-            });
-
-            $("#green").on("click", function() {
-                totalVal = totalVal + greenVal;
-                console.log("New totalg= " + totalVal);
-                $('#total-num').text(totalVal); 
-        
-
-            });
-
-            $("#red").on("click", function() {
-                totalVal = totalVal + redVal
-                console.log("New totalr= " + totalVal);
+            $('.button').on('click', function(){
+                var audio = $("#crystalSound")[0];
+                $(".button").mousedown(function() {
+                  audio.play();
+                });
+                // totalVal += blueVal;
+                var value = $(this).data("value");
+                totalVal += $(this).data("value");
+                console.log("total", totalVal);
                 $('#total-num').text(totalVal); 
 
-            });
-
-            $("#purple").on("click", function() {
-                totalVal = totalVal + purpVal;
-                console.log("New totalp= " + totalVal);
-                $('#total-num').text(totalVal); 
-
-            });
-
-            $(".button").on("click", function(){
                 if (totalVal === randNum){
                     winner();
                 }
                 else if (totalVal > randNum){
                     loser();
                 } 
+        
             });
 
         };
 
         var winner = function(){
+            $(".button").off("click");
             wins++;
             console.log(wins);
             $("#wins").text(wins);
-            // var winResult = ("<h3>" + "You won!" + "</h3>");
-            // $(".stats").prepend(winResult);
-            startGame();
+            
+            swal({
+                title: "You won!",
+                text: "Click OK to play again",
+                icon: "success",
+                button: "OK!",
+              }).then(function() {
+                  resetCrystals();
+                  startGame();
+                  
+            });
+
         }
     
         var loser = function(){
+            $(".button").off("click");
             losses++;
             $("#losses").text(losses);
-            // var loseResult = ("<h3>" + "You lost. Try again!" + "</h3>");
-            // $(".stats").prepend(loseResult);
-            startGame();
+            swal({
+                title: "You lost.",
+                text: "Click OK to play again",
+                icon: "error",
+                button: "OK!",
+              }).then(function() {
+                resetCrystals();
+                startGame();
+              });
+
         }
     
     startGame();

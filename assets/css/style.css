@@ -1,4 +1,4 @@
-body {
+body, h2 {
     color: rgb(241, 241, 241);
     background-image: url("../images/black_thread.png");
     font-family: 'Rye', cursive;
@@ -9,7 +9,7 @@ h1 {
     font-size: 100px;
 }
 
-p {
+.rules {
     font-family: 'Lato', sans-serif;
 }
 
@@ -19,11 +19,22 @@ p {
     background: transparent;
     margin-top: 40px;
     margin-bottom: 70px;
+    outline: none;
+}
+
+.gameNums {
+    text-align: center;
+    font-family: 'Rye', cursive;
+    border: dotted 3px white;
+    margin: 10px;
+    width: 22%;
+    height: 150px;
 }
 
 
 #blueCrystal {
     width: 70%;
+
 }
 
 #redCrystal {

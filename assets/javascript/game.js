@@ -42,6 +42,10 @@ $(document).ready(function () {
         
 
             $('.button').on('click', function(){
+                var audio = $("#crystalSound")[0];
+                $(".button").mousedown(function() {
+                  audio.play();
+                });
                 // totalVal += blueVal;
                 var value = $(this).data("value");
                 totalVal += $(this).data("value");

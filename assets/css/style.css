@@ -26,9 +26,9 @@ h1 {
     text-align: center;
     font-family: 'Rye', cursive;
     border: dotted 3px white;
-    margin: 10px;
-    width: 22%;
-    height: 150px;
+    /* margin: 10px;  */
+    /* width: 23%; */
+    height: 150px; 
 }
 
 

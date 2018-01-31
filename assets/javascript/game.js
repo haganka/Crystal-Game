@@ -1,31 +1,23 @@
 $(document).ready(function () {
-    
-    var greenVal = 0;
-    var redVal = 0;
-    var blueVal = 0;
-    var purpVal = 0;
+
     var randNum = 0;
     var totalVal = 0;
-    var matchRandom = false;
-    var counter = 0;
     var wins = 0;
     var losses = 0;
-    var loseResult = "";
-    var winResult = "";
 
     var resetCrystals = function(){
-        blueVal = 0;
-        greenVal = 0;
-        purpVal = 0;
-        redVal = 0;
         totalVal = 0;
         randNum = 0;
     }
 
     var startGame = function(){
         totalVal = 0;
+        // var blueVal = 0;
+        // var greenVal = 0;
+        // var purpVal = 0;
+        // var redVal = 0;
         $('#total-num').text(totalVal);
-        
+    
         
         randNum = Math.floor(Math.random() * 102) + 19;
         $("#random-number").text(randNum);
@@ -35,52 +27,34 @@ $(document).ready(function () {
             crystalVal.push(Math.floor(Math.random() * 11) + 1);
 
         }
-            blueVal = crystalVal[0];
-            $("#blue").attr("data-value", blueVal);
+            var blueVal = crystalVal[0];
+            $("#blue").data("value", blueVal);
             console.log("blue", blueVal);
-            greenVal = crystalVal[1];
-            $("#green").attr("data-value", greenVal);
+            var greenVal = crystalVal[1];
+            $("#green").data("value", greenVal);
             console.log("green", greenVal);
-            redVal = crystalVal[2];
-            $("#red").attr("data-value", redVal);
+            var redVal = crystalVal[2];
+            $("#red").data("value", redVal);
             console.log("red", redVal);
-            purpVal = crystalVal[3];
-            $("#purple").attr("data-value", purpVal);
+            var purpVal = crystalVal[3];
+            $("#purple").data("value", purpVal);
             console.log("purp", purpVal);
         
 
-            $('#blue').on('click', function(){
-                totalVal += blueVal;
-                $('#total-num').text(totalVal); 
-        
-            });
-
-            $("#green").on("click", function() {
-                totalVal += greenVal;
-                $('#total-num').text(totalVal); 
-        
-
-            });
-
-            $("#red").on("click", function() {
-                totalVal += redVal;
+            $('.button').on('click', function(){
+                // totalVal += blueVal;
+                var value = $(this).data("value");
+                totalVal += $(this).data("value");
+                console.log("total", totalVal);
                 $('#total-num').text(totalVal); 
 
-            });
-
-            $("#purple").on("click", function() {
-                totalVal += purpVal;
-                $('#total-num').text(totalVal); 
-
-            });
-
-            $(".button").on("click", function(){
                 if (totalVal === randNum){
                     winner();
                 }
                 else if (totalVal > randNum){
                     loser();
                 } 
+        
             });
 
         };
@@ -90,20 +64,34 @@ $(document).ready(function () {
             wins++;
             console.log(wins);
             $("#wins").text(wins);
-            // var winResult = ("<h3>" + "You won!" + "</h3>");
-            // $(".stats").prepend(winResult);
-            resetCrystals();
-            startGame();
+            
+            swal({
+                title: "You won!",
+                text: "Click OK to play again",
+                icon: "success",
+                button: "OK!",
+              }).then(function() {
+                  resetCrystals();
+                  startGame();
+                  
+            });
+
         }
     
         var loser = function(){
             $(".button").off("click");
             losses++;
             $("#losses").text(losses);
-            // var loseResult = ("<h3>" + "You lost. Try again!" + "</h3>");
-            // $(".stats").prepend(loseResult);
-            resetCrystals();
-            startGame();
+            swal({
+                title: "You lost.",
+                text: "Click OK to play again",
+                icon: "error",
+                button: "OK!",
+              }).then(function() {
+                resetCrystals();
+                startGame();
+              });
+
         }
     
     startGame();

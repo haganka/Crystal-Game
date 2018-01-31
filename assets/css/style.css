@@ -21,6 +21,7 @@ p {
     margin-bottom: 70px;
 }
 
+
 button:active {
     outline: none;
     border: none;
@@ -29,6 +30,7 @@ button:active {
 
 #blueCrystal {
     width: 70%;
+
 }
 
 #redCrystal {
